@@ -6,6 +6,7 @@ import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface
 import { AuthService } from '../../services/auth.service';
 import { registerAction } from '../../store/actions/register.action';
 import { isSubmittedSelector } from '../../store/selectors';
+import { RegisterRequestInteface } from '../../types/registerRequest.inteface';
 
 @Component({
   selector: 'nb-register',
@@ -40,11 +41,9 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     console.log(this.form.value);
-    this.store.dispatch(registerAction(this.form.value));
-    this.authService
-      .register(this.form.value)
-      .subscribe((currentUser: CurrentUserInterface) => {
-        console.log('currentUser', currentUser);
-      });
+    const request: RegisterRequestInteface = {
+      user: this.form.value,
+    };
+    this.store.dispatch(registerAction({ request }));
   }
 }
