@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { BackendErrorInterface } from 'src/app/shared/types/backendErrors.interface';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
 import { AuthService } from '../../services/auth.service';
 import { registerAction } from '../../store/actions/register.action';
-import { isSubmittedSelector } from '../../store/selectors';
+import { isSubmittedSelector, validationErrorsSelector } from '../../store/selectors';
 import { RegisterRequestInteface } from '../../types/registerRequest.inteface';
 
 @Component({
@@ -15,7 +16,8 @@ import { RegisterRequestInteface } from '../../types/registerRequest.inteface';
 })
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
-  isSubmitting$!: Observable<boolean>;
+  isSubmitting$: Observable<boolean>;
+  backendErrors$!: Observable<BackendErrorInterface | null>;
   constructor(
     private fb: FormBuilder,
     private store: Store,
@@ -29,6 +31,7 @@ export class RegisterComponent implements OnInit {
 
   initializeValues() {
     this.isSubmitting$ = this.store.pipe(select(isSubmittedSelector));
+    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
   }
 
   initializeForm(): void {
