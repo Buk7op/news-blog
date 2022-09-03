@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { TopBarModule } from './shared/modules/top-bar/top-bar.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { EffectsModule } from '@ngrx/effects';
       logOnly: environment.production,
     }),
     EffectsModule.forRoot(),
+    TopBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
