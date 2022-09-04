@@ -12,6 +12,7 @@ import { TopBarModule } from './shared/modules/top-bar/top-bar.module';
 import { PersistanceService } from './shared/services/persistance.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './shared/services/authInterceptor.service';
+import { GlobalFeedModule } from './global-feed/global-feed.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { AuthInterceptor } from './shared/services/authInterceptor.service';
     }),
     EffectsModule.forRoot(),
     TopBarModule,
+    GlobalFeedModule,
   ],
   providers: [
     PersistanceService,
