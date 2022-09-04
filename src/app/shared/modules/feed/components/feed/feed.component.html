@@ -20,5 +20,5 @@
             HERE LIST OF TAGS
         </a>
     </div>
-    PAGINATION
+    <nb-pagination [total]="(feed$ | async)?.articlesCount || 0" [limit]="limit" [url]="baseUrl" [currentPage]="currentPage"></nb-pagination>
 </div>
