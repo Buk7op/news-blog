@@ -17,7 +17,7 @@
         <a [routerLink]="['/articles', article.slug]" class="preview-link">
             <h1>{{article.title}}</h1>
             <p>{{article.description}}</p>
-            HERE LIST OF TAGS
+            <nb-tag-list [tags]="article.tagList"></nb-tag-list>
         </a>
     </div>
     <nb-pagination [total]="(feed$ | async)?.articlesCount || 0" [limit]="limit" [url]="baseUrl" [currentPage]="currentPage"></nb-pagination>
