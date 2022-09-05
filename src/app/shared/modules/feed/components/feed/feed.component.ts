@@ -1,4 +1,3 @@
-import { CoreEnvironment } from '@angular/compiler/src/compiler_facade_interface';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
@@ -7,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { getFeedAction } from '../../store/actions/getFeed.action';
 import { dataSelector, errorSelector, isLoadingSelector } from '../../store/selectors';
 import { GetFeedResponseInterface } from '../../types/getFeedResponse.interface';
+import { parseUrl, stringify } from 'query-string';
 
 @Component({
   selector: 'nb-feed',
@@ -36,18 +36,26 @@ export class FeedComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeValues();
-    this.fetchData();
     this.initializeListeners();
   }
 
   initializeListeners(): void {
     this.queryParamsSubscription = this.route.queryParams.subscribe((params: Params) => {
       this.currentPage = Number(params.page || '1');
+      this.fetchFeed();
     });
   }
 
-  fetchData(): void {
-    this.store.dispatch(getFeedAction({ url: this.apiUrlProps }));
+  fetchFeed(): void {
+    const offset = this.currentPage * this.limit - this.limit;
+    const parsedUrl = parseUrl(this.apiUrlProps);
+    const stringifiedParams = stringify({
+      limit: this.limit,
+      offset,
+      ...parsedUrl.query,
+    });
+    const apiUrlWithParams = `${parsedUrl.url}?${stringifiedParams}`;
+    this.store.dispatch(getFeedAction({ url: apiUrlWithParams }));
   }
 
   initializeValues(): void {
