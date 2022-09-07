@@ -36,7 +36,8 @@ const articleReducer = createReducer(
       ...state,
       isLoading: false,
     })
-  )
+  ),
+  on(routerNavigationAction, (): ArticleStateInterface => initialState)
 );
 
 export function reducers(state: ArticleStateInterface, action: Action) {
