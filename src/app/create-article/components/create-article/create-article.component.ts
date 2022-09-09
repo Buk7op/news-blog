@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { ArticleInputInteface } from 'src/app/shared/types/articleInput.interface';
+import { BackendErrorInterface } from 'src/app/shared/types/backendErrors.interface';
+import { createArticleAction } from '../../store/actions/createArticle.action';
+import { isSubmittedSelector, validationErrorsSelector } from '../../store/selectors';
 
 @Component({
   selector: 'nb-create-article',
@@ -6,17 +12,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-article.component.scss'],
 })
 export class CreateArticleComponent implements OnInit {
-  initialValues = {
-    title: 'foo',
-    description: 'bar',
-    body: 'baz',
-    tagList: ['123'],
+  initialValues: ArticleInputInteface = {
+    article: {
+      title: '',
+      description: '',
+      body: '',
+      tagList: [],
+    },
   };
-  constructor() {}
+  isSubmitting$: Observable<boolean>;
+  backendErrors$: Observable<BackendErrorInterface | null>;
+  constructor(private store: Store) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isSubmitting$ = this.store.pipe(select(isSubmittedSelector));
+    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
+  }
 
-  onSubmit(res: any): void {
-    console.log('onSubmit in parent', res);
+  onSubmit(articleInput: ArticleInputInteface): void {
+    this.store.dispatch(createArticleAction({ articleInput }));
   }
 }
