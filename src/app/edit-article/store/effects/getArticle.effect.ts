@@ -13,6 +13,11 @@ import {
 
 @Injectable()
 export class GetArticleEffect {
+  constructor(
+    private actions$: Actions,
+    private sharedArticleService: SharedArticleService
+  ) {}
+
   getArticle$ = createEffect(() =>
     this.actions$.pipe(
       ofType(getArticleAction),
@@ -21,7 +26,6 @@ export class GetArticleEffect {
           map((article: ArticleInterface) => {
             return getArticleSuccessAction({ article });
           }),
-
           catchError(() => {
             return of(getArticleFailureAction());
           })
@@ -29,9 +33,4 @@ export class GetArticleEffect {
       })
     )
   );
-
-  constructor(
-    private actions$: Actions,
-    private sharedArticleService: SharedArticleService
-  ) {}
 }

@@ -1,6 +1,6 @@
 <nb-loading *ngIf="isLoading$ | async"></nb-loading>
 <nb-article-form 
-    *ngIf="initialValues$ | async"
+    *ngIf="(initialValues$ | async) && !(isLoading$ | async)"
     [initialValues]="(initialValues$ | async)!"
     [isSubmitting]="(isSubmitting$ | async) ?? false" 
     [errors]="backendErrors$ | async"

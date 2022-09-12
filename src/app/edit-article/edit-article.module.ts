@@ -8,9 +8,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
 import { ArticleService } from '../shared/services/article.service';
-import { GetArticleEffect } from '../article/store/effects/getArticle.effect';
 import { UpdateArticleEffect } from './store/effects/createArticle.effect';
 import { LoadingModule } from '../shared/modules/loading/loading.module';
+import { GetArticleEffect } from './store/effects/getArticle.effect';
 
 const routes = [
   {

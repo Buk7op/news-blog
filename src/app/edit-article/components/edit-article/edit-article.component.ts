@@ -60,6 +60,7 @@ export class EditArticleComponent implements OnInit {
   }
 
   onSubmit(articleInput: ArticleInputInterface): void {
+    articleInput.article.tagList = articleInput.article.tagList.toString().split(' ');
     this.store.dispatch(updateArticleAction({ slug: this.slug, articleInput }));
   }
 }
