@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { ArticleInputInteface } from 'src/app/shared/types/articleInput.interface';
+import { ArticleInputInterface } from 'src/app/shared/types/articleInput.interface';
 import { BackendErrorInterface } from 'src/app/shared/types/backendErrors.interface';
 import { createArticleAction } from '../../store/actions/createArticle.action';
 import { isSubmittedSelector, validationErrorsSelector } from '../../store/selectors';
@@ -12,7 +12,7 @@ import { isSubmittedSelector, validationErrorsSelector } from '../../store/selec
   styleUrls: ['./create-article.component.scss'],
 })
 export class CreateArticleComponent implements OnInit {
-  initialValues: ArticleInputInteface = {
+  initialValues: ArticleInputInterface = {
     article: {
       title: '',
       description: '',
@@ -29,7 +29,7 @@ export class CreateArticleComponent implements OnInit {
     this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
   }
 
-  onSubmit(articleInput: ArticleInputInteface): void {
+  onSubmit(articleInput: ArticleInputInterface): void {
     this.store.dispatch(createArticleAction({ articleInput }));
   }
 }

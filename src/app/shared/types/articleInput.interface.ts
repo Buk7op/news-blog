@@ -1,4 +1,4 @@
-export interface ArticleInputInteface {
+export interface ArticleInputInterface {
   article: {
     title: string;
     description: string;

@@ -1,0 +1,7 @@
+<nb-loading *ngIf="isLoading$ | async"></nb-loading>
+<nb-article-form 
+    *ngIf="initialValues$ | async"
+    [initialValues]="(initialValues$ | async)!"
+    [isSubmitting]="(isSubmitting$ | async) ?? false" 
+    [errors]="backendErrors$ | async"
+    (articleSubmit)="onSubmit($event)"></nb-article-form>
