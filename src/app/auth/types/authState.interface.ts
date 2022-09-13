@@ -1,7 +1,7 @@
 import { BackendErrorInterface } from 'src/app/shared/types/backendErrors.interface';
 import { CurrentUserInterface } from 'src/app/shared/types/currentUser.interface';
 
-export interface AuthStateInteface {
+export interface AuthStateInterface {
   isSubmitting: boolean;
   isLoading: boolean;
   currentUser: CurrentUserInterface | null;

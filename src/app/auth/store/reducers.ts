@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { AuthStateInteface } from '../types/authState.interface';
+import { AuthStateInterface } from '../types/authState.interface';
 import {
   getCurrentUserAction,
   getCurrentUserFailureAction,
@@ -15,8 +15,9 @@ import {
   registerSuccessAction,
   registerFailureAction,
 } from './actions/register.action';
+import { updateCurrentUserSuccessAction } from './actions/updateCurrentUser.action';
 
-const initialState: AuthStateInteface = {
+const initialState: AuthStateInterface = {
   isSubmitting: false,
   currentUser: null,
   isLoggedIn: null,
@@ -28,7 +29,7 @@ const authReducer = createReducer(
   initialState,
   on(
     registerAction,
-    (state): AuthStateInteface => ({
+    (state): AuthStateInterface => ({
       ...state,
       isSubmitting: true,
       validationErrors: null,
@@ -36,7 +37,7 @@ const authReducer = createReducer(
   ),
   on(
     registerSuccessAction,
-    (state, action): AuthStateInteface => ({
+    (state, action): AuthStateInterface => ({
       ...state,
       isSubmitting: false,
       isLoggedIn: true,
@@ -45,7 +46,7 @@ const authReducer = createReducer(
   ),
   on(
     registerFailureAction,
-    (state, action): AuthStateInteface => ({
+    (state, action): AuthStateInterface => ({
       ...state,
       isSubmitting: false,
       validationErrors: action.errors,
@@ -53,7 +54,7 @@ const authReducer = createReducer(
   ),
   on(
     loginAction,
-    (state): AuthStateInteface => ({
+    (state): AuthStateInterface => ({
       ...state,
       isSubmitting: true,
       validationErrors: null,
@@ -61,7 +62,7 @@ const authReducer = createReducer(
   ),
   on(
     loginSuccessAction,
-    (state, action): AuthStateInteface => ({
+    (state, action): AuthStateInterface => ({
       ...state,
       isSubmitting: false,
       currentUser: action.currentUser,
@@ -70,7 +71,7 @@ const authReducer = createReducer(
   ),
   on(
     loginFailureAction,
-    (state, action): AuthStateInteface => ({
+    (state, action): AuthStateInterface => ({
       ...state,
       isSubmitting: false,
       validationErrors: action.errors,
@@ -91,9 +92,16 @@ const authReducer = createReducer(
     isLoading: false,
     isLoggedIn: false,
     currentUser: null,
-  }))
+  })),
+  on(
+    updateCurrentUserSuccessAction,
+    (state, action): AuthStateInterface => ({
+      ...state,
+      currentUser: action.currentUser,
+    })
+  )
 );
 
-export function reducer(state: AuthStateInteface, action: Action) {
+export function reducer(state: AuthStateInterface, action: Action) {
   return authReducer(state, action);
 }

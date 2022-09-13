@@ -14,6 +14,7 @@ import { RegisterEffect } from './store/effects/register.effect';
 import { reducer } from './store/reducers';
 import { LoginComponent } from './components/login/login.component';
 import { GetCurrentUserEffect } from './store/effects/getCurrentUser.effect';
+import { UpdateCurrentUserEffect } from './store/effects/updateCurrentUser.effect';
 
 const routes: Routes = [
   {
@@ -33,7 +34,12 @@ const routes: Routes = [
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducer),
     HttpClientModule,
-    EffectsModule.forFeature([RegisterEffect, LoginEffect, GetCurrentUserEffect]),
+    EffectsModule.forFeature([
+      RegisterEffect,
+      LoginEffect,
+      GetCurrentUserEffect,
+      UpdateCurrentUserEffect,
+    ]),
     BackendErrorMessagesModule,
   ],
   declarations: [RegisterComponent, LoginComponent],
