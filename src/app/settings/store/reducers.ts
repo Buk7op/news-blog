@@ -24,14 +24,14 @@ const settingsReducer = createReducer(
     updateCurrentUserSuccessAction,
     (state): SettingStateInterface => ({
       ...state,
-      isSubmitting: true,
+      isSubmitting: false,
     })
   ),
   on(
     updateCurrentUserFailureAction,
     (state, action): SettingStateInterface => ({
       ...state,
-      isSubmitting: true,
+      isSubmitting: false,
       validationErrors: action.errors,
     })
   )

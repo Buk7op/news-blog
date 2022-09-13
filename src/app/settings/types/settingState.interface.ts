@@ -1,6 +1,6 @@
 import { BackendErrorInterface } from 'src/app/shared/types/backendErrors.interface';
 
 export interface SettingStateInterface {
-  isSubmitting: Boolean;
+  isSubmitting: boolean;
   validationErrors: BackendErrorInterface | null;
 }

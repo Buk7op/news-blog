@@ -1,5 +1,5 @@
 import { CurrentUserInterface } from './currentUser.interface';
 
-export interface CurrentUserInputInterface extends CurrentUserInterface {
-  password: string;
+export interface CurrentUserInputInterface {
+  user: CurrentUserInterface & { password: string };
 }
