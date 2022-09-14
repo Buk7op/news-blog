@@ -8,6 +8,7 @@ import { GetUserProfileEffect } from './store/effects/getUserProfile.effect';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
 import { state } from '@angular/animations';
+import { FeedModule } from '../shared/modules/feed/feed.module';
 
 const routes = [
   {
@@ -27,6 +28,7 @@ const routes = [
     RouterModule.forChild(routes),
     EffectsModule.forFeature([GetUserProfileEffect]),
     StoreModule.forFeature('userProfile', reducers),
+    FeedModule,
   ],
   providers: [UserProfileService],
 })
