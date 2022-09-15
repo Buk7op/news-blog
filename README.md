@@ -17,8 +17,8 @@
   * Authentication can be easily switched to session/cookie based
 * Settings page (URL: /#/settings )
 * Editor page to create/edit articles (URL: /#/editor, /#/editor/article-slug-here )
-* Article page (URL: /#/article/article-slug-here )
+* Article page (URL: /#/articles/article-slug-here )
   * Delete article button (only shown to article's author)
-* Profile page (URL: /#/profile/:username, /#/profile/:username/favorites )
+* Profile page (URL: /#/profiles/:username, /#/profiles/:username/favorites )
   * Show basic user info
   * List of articles populated from author's created articles or author's favorited articles
