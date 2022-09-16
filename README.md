@@ -1,27 +1,24 @@
-# NewsBlog
+## General functionality:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.3.
+* Authenticate users via JWT (login/signup pages + logout button on settings page)
+* CRU* users (sign up & settings page - no deleting required)
+* CRUD Articles
+* GET and display paginated lists of articles
+* Favorite articles
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### The general page breakdown looks like this:
+* Home page (URL: /#/ )
+  * List of tags
+  * List of articles pulled from either Feed, Global, or by Tag
+  * Pagination for list of articles
+* Sign in/Sign up pages (URL: /#/login, /#/register )
+  * Uses JWT (store the token in localStorage)
+  * Authentication can be easily switched to session/cookie based
+* Settings page (URL: /#/settings )
+* Editor page to create/edit articles (URL: /#/editor, /#/editor/article-slug-here )
+* Article page (URL: /#/articles/article-slug-here )
+  * Delete article button (only shown to article's author)
+* Profile page (URL: /#/profiles/:username, /#/profiles/:username/favorites )
+  * Show basic user info
+  * List of articles populated from author's created articles or author's favorited articles
